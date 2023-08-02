@@ -1,0 +1,106 @@
+package JAVA;
+import java.util.Scanner;
+import java.net.*;
+import java.io.*;
+
+public class Assgn1 {
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("1. Get weather");
+            System.out.println("2. Get Wind Speed");
+            System.out.println("3. Get Pressure");
+            System.out.println("0. Exit");
+
+            int choice = sc.nextInt();
+
+            if (choice == 1) {
+                System.out.print("Enter the date: ");
+                String date = sc.next();
+                String temp = getWeather(date);
+                System.out.printf("The temperature on %s is %s°C.\n", date, temp);
+            } else if (choice == 2) {
+                System.out.print("Enter the date: ");
+                String date = sc.next();
+                String windSpeed = getWindSpeed(date);
+                System.out.printf("The wind speed on %s is %s m/s.\n", date, windSpeed);
+            } else if (choice == 3) {
+                System.out.print("Enter the date: ");
+                String date = sc.next();
+                String pressure = getPressure(date);
+                System.out.printf("The pressure on %s is %s hPa.\n", date, pressure);
+            } else if (choice == 0) {
+                break;
+            } else {
+                System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    public static String getWeather(String date) {
+        String url = "https://samples.openweathermap.org/data/2.5/forecast/hourly?q=London,us&appid=b6907d289e10d714a6e88b30761fae22";
+        String response = "";
+        try {
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer responseBuffer = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                responseBuffer.append(inputLine);
+            }
+            in.close();
+            response = responseBuffer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public static String getWindSpeed(String date) {
+        String url = "https://samples.openweathermap.org/data/2.5/forecast/hourly?q=London,us&appid=b6907d289e10d714a6e88b30761fae22";
+        String response = "";
+        try {
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer responseBuffer = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                responseBuffer.append(inputLine);
+            }
+            in.close();
+            response = responseBuffer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public static String getPressure(String date) {
+        String url = "https://samples.openweathermap.org/data/2.5/forecast/hourly?q=London,us&appid=b6907d289e10d714a6e88b30761fae22";
+        String response = "";
+        try {
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer responseBuffer = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                responseBuffer.append(inputLine);
+            }
+            in.close();
+            response = responseBuffer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+}
+
+
